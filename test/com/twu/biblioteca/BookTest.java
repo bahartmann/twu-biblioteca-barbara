@@ -1,27 +1,45 @@
 package com.twu.biblioteca;
 
-import junit.framework.TestCase;
+import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class BookTest {
 
+    Book unavailableBook;
+    Book availableBook;
+
+    @Before
+    public void setUp() {
+        unavailableBook = new Book("The Grapes of Wrath", "John Steinbeck", 1939, true);
+        availableBook = new Book("The Great Gatsby", "F. Scott Fitzgerald", 1925, false);
+    }
+
     @Test
     public void shouldCreateBookWhenValidDataIsGiven() {
-        assertNotNull(new Book("Head First Java", "Bert Bates and Kathy Sierra", 2004, false));
+        Book newBook = new Book("Head First Java", "Bert Bates and Kathy Sierra", 2004, false);
+        assertNotNull(newBook);
+        assertTrue(BookCollection.collection.contains(newBook));
     }
 
     @Test
     public void shouldCheckoutBookWhenIsAvailable() {
-        Book book1 = new Book("Head First Java", "Bert Bates and Kathy Sierra", 2004, false);
-        assertTrue(book1.checkout());
+        assertTrue(availableBook.checkout());
     }
 
     @Test
     public void shouldNotCheckoutBookWhenIsUnavailable() {
-        Book book2 = new Book("Head First Java", "Bert Bates and Kathy Sierra", 2004, true);
-        assertFalse(book2.checkout());
+        assertFalse(unavailableBook.checkout());
     }
 
+    @Test
+    public void shouldGiveAvailableBookDetailsInStringFormat() {
+        String[] bookData = new String[]{"The Great Gatsby", "F. Scott Fitzgerald", "1925", "Available"};
+        assertArrayEquals(availableBook.getData(), bookData);
+    }
 
+    public void shouldGiveUnavailableBookDetailsInStringFormat() {
+        String[] bookData = new String[]{"The Grapes of Wrath", "John Steinbeck", "1939", "Unavailable"};
+        assertArrayEquals(unavailableBook.getData(), bookData);
+    }
 }

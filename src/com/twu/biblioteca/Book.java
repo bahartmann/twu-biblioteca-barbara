@@ -1,5 +1,7 @@
 package com.twu.biblioteca;
 
+import sun.tools.asm.ArrayData;
+
 import java.util.ArrayList;
 
 public class Book {
@@ -39,6 +41,7 @@ public class Book {
         setAuthor(author);
         setYear(year);
         setCheckedOut(checkedOut);
+        BookCollection.add(this);
     }
 
     public boolean checkout() {
@@ -47,6 +50,15 @@ public class Book {
             return true;
         }
         return false;
+    }
+
+    public String[] getData() {
+        String bookYear = String.valueOf(this.getYear());
+
+        String bookAvailability = "Unavailable";
+        if (this.isAvailable()) bookAvailability = "Available";
+
+        return new String[]{this.getTitle(), this.getAuthor(),  bookYear, bookAvailability};
     }
 
 }
