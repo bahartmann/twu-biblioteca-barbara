@@ -14,19 +14,28 @@ public class BookCollection {
         System.out.println("| " +
                 stringWithExtraCharacters("                 TITLE", 40) + "| " +
                 stringWithExtraCharacters("                 AUTHOR", 40) + "| " +
-                stringWithExtraCharacters("YEAR", 5) + "| " +
-                stringWithExtraCharacters("AVAILABILITY", 13) + "|");
+                stringWithExtraCharacters("YEAR", 5) + "|");
 
         for (Book book : BookCollection.collection) {
-            System.out.println("| " +
-                    stringWithExtraCharacters(book.getData()[0], 40) + "| " +
-                    stringWithExtraCharacters(book.getData()[1], 40) + "| " +
-                    stringWithExtraCharacters(book.getData()[2], 5)+ "| " +
-                    stringWithExtraCharacters(book.getData()[3], 13) + "|");
+            if (book.isAvailable()){
+                System.out.println("| " +
+                        stringWithExtraCharacters(book.getTitle(), 40) + "| " +
+                        stringWithExtraCharacters(book.getAuthor(), 40) + "| " +
+                        stringWithExtraCharacters(String.valueOf(book.getYear()), 5)+ "|");
+            }
         }
     }
 
     public static String stringWithExtraCharacters(String string, int length) {
         return String.format("%1$-"+length+ "s", string);
+    }
+
+    public static Book search(String userSearch) {
+        for (Book book : BookCollection.collection) {
+            if (userSearch.equalsIgnoreCase(book.getTitle()))
+                return book;
+        }
+        System.out.println("Book not found...");
+        return null;
     }
 }

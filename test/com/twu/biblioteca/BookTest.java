@@ -1,18 +1,30 @@
 package com.twu.biblioteca;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+
 import static org.junit.Assert.*;
 
 public class BookTest {
 
     Book unavailableBook;
     Book availableBook;
+    ByteArrayOutputStream outContent = new ByteArrayOutputStream();
 
     @Before
     public void setUp() {
         unavailableBook = new Book("The Grapes of Wrath", "John Steinbeck", 1939, true);
         availableBook = new Book("The Great Gatsby", "F. Scott Fitzgerald", 1925, false);
+        System.setOut(new PrintStream(outContent));
+    }
+
+    @After
+    public void cleanUpStreams() {
+        System.setOut(null);
     }
 
     @Test
@@ -23,23 +35,28 @@ public class BookTest {
     }
 
     @Test
-    public void shouldCheckoutBookWhenIsAvailable() {
-        assertTrue(availableBook.checkout());
+    public void successfulCheckout() {
+        availableBook.checkout();
+        assertFalse (availableBook.isAvailable());
+        assertEquals("Thank you! Enjoy the book\n", outContent.toString());
     }
 
     @Test
-    public void shouldNotCheckoutBookWhenIsUnavailable() {
-        assertFalse(unavailableBook.checkout());
+    public void unsuccessfulCheckout() {
+        unavailableBook.checkout();
+        assertEquals("That book is not available.\n", outContent.toString());
     }
 
     @Test
-    public void shouldGiveAvailableBookDetailsInStringFormat() {
-        String[] bookData = new String[]{"The Great Gatsby", "F. Scott Fitzgerald", "1925", "Available"};
-        assertArrayEquals(availableBook.getData(), bookData);
+    public void successfulReturn() {
+        unavailableBook.returning();
+        assertTrue(availableBook.isAvailable());
+        assertEquals("Thank you for returning the book.\n", outContent.toString());
     }
 
-    public void shouldGiveUnavailableBookDetailsInStringFormat() {
-        String[] bookData = new String[]{"The Grapes of Wrath", "John Steinbeck", "1939", "Unavailable"};
-        assertArrayEquals(unavailableBook.getData(), bookData);
+    @Test
+    public void unsuccessfulReturn() {
+        availableBook.returning();
+        assertEquals("That is not a valid book to return.\n", outContent.toString());
     }
 }

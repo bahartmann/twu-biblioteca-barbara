@@ -44,21 +44,21 @@ public class Book {
         BookCollection.add(this);
     }
 
-    public boolean checkout() {
+    public void checkout() {
         if (this.isAvailable()) {
             setCheckedOut(true);
-            return true;
+            System.out.println("Thank you! Enjoy the book");
+        } else {
+            System.out.println("That book is not available.");
         }
-        return false;
     }
 
-    public String[] getData() {
-        String bookYear = String.valueOf(this.getYear());
-
-        String bookAvailability = "Unavailable";
-        if (this.isAvailable()) bookAvailability = "Available";
-
-        return new String[]{this.getTitle(), this.getAuthor(),  bookYear, bookAvailability};
+    public void returning() {
+        if (this.isAvailable()) {
+            System.out.println("That is not a valid book to return.");
+        } else {
+            setCheckedOut(false);
+            System.out.println("Thank you for returning the book.");
+        }
     }
-
 }
