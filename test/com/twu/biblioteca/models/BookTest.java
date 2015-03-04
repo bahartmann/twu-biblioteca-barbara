@@ -1,4 +1,4 @@
-package com.twu.biblioteca;
+package com.twu.biblioteca.models;
 
 import org.junit.After;
 import org.junit.Before;
@@ -11,8 +11,8 @@ import static org.junit.Assert.*;
 
 public class BookTest {
 
-    Book unavailableBook;
-    Book availableBook;
+    private Book unavailableBook;
+    private Book availableBook;
     ByteArrayOutputStream outContent = new ByteArrayOutputStream();
 
     @Before
@@ -31,7 +31,6 @@ public class BookTest {
     public void shouldCreateBookWhenValidDataIsGiven() {
         Book newBook = new Book("Head First Java", "Bert Bates and Kathy Sierra", 2004, false);
         assertNotNull(newBook);
-        assertTrue(BookCollection.collection.contains(newBook));
     }
 
     @Test

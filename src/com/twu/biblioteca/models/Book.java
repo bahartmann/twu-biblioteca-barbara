@@ -1,8 +1,4 @@
-package com.twu.biblioteca;
-
-import sun.tools.asm.ArrayData;
-
-import java.util.ArrayList;
+package com.twu.biblioteca.models;
 
 public class Book {
     private String title;
@@ -41,7 +37,6 @@ public class Book {
         setAuthor(author);
         setYear(year);
         setCheckedOut(checkedOut);
-        BookCollection.add(this);
     }
 
     public void checkout() {
