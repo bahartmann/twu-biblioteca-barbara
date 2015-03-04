@@ -36,7 +36,6 @@ public class BookTest {
     @Test
     public void successfulCheckout() {
         availableBook.checkout();
-        assertFalse (availableBook.isAvailable());
         assertEquals("Thank you! Enjoy the book\n", outContent.toString());
     }
 

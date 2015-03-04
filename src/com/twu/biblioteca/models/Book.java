@@ -1,35 +1,21 @@
 package com.twu.biblioteca.models;
 
-public class Book {
-    private String title;
+public class Book extends LibraryItem {
     private String author;
     private int year;
-    private boolean checkedOut;
 
-    public String getTitle() {
-        return title;
-    }
     public String getAuthor() {
         return author;
     }
     public int getYear() {
         return year;
     }
-    public boolean isAvailable() {
-        return !checkedOut;
-    }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
     public void setAuthor(String author) {
         this.author = author;
     }
     public void setYear(int year) {
         this.year = year;
-    }
-    public void setCheckedOut(boolean checkedOut) {
-        this.checkedOut = checkedOut;
     }
 
     public Book(String title, String author, int year, boolean checkedOut) {
@@ -40,20 +26,14 @@ public class Book {
     }
 
     public void checkout() {
-        if (this.isAvailable()) {
-            setCheckedOut(true);
-            System.out.println("Thank you! Enjoy the book");
-        } else {
-            System.out.println("That book is not available.");
-        }
+        String checkoutStatus = checkoutItem() ? "Thank you! Enjoy the book"
+                : "That book is not available.";
+        System.out.println(checkoutStatus);
     }
 
     public void returning() {
-        if (this.isAvailable()) {
-            System.out.println("That is not a valid book to return.");
-        } else {
-            setCheckedOut(false);
-            System.out.println("Thank you for returning the book.");
-        }
+        String returnStatus = returnItem() ? "Thank you for returning the book."
+                : "That is not a valid book to return.";
+        System.out.println(returnStatus);
     }
 }

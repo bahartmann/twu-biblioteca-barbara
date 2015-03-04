@@ -1,5 +1,6 @@
 package com.twu.biblioteca.models;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -25,6 +26,11 @@ public class BookCollectionTest {
         collectionOne.addBook(new Book("The Grapes of Wrath", "John Steinbeck", 1939, true));
 
         System.setOut(new PrintStream(outContent));
+    }
+
+    @After
+    public void cleanUpStreams() {
+        System.setOut(null);
     }
 
     @Test
