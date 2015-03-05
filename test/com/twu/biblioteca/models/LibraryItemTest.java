@@ -4,14 +4,13 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.io.PrintStream;
-
 import static org.junit.Assert.*;
 
 public class LibraryItemTest {
 
     private LibraryItem availableItem;
     private LibraryItem unavailableItem;
+    private UserAccount user;
 
     @Before
     public void setUp() {
@@ -26,13 +25,13 @@ public class LibraryItemTest {
 
     @Test
     public void checkoutAvailableItem() {
-        assertTrue(availableItem.checkoutItem());
+        assertTrue(availableItem.checkoutItem(user));
         assertFalse (availableItem.isAvailable());
     }
 
     @Test
     public void checkoutUnavailableItem() {
-        assertFalse(unavailableItem.checkoutItem());
+        assertFalse(unavailableItem.checkoutItem(user));
     }
 
     @Test

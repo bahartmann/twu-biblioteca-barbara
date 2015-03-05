@@ -6,6 +6,7 @@ package com.twu.biblioteca.models;
 public class LibraryItem {
     private String title;
     private boolean checkedOut;
+    private UserAccount checkedBy;
 
     public String getTitle() {
         return title;
@@ -13,6 +14,7 @@ public class LibraryItem {
     public boolean isAvailable() {
         return !checkedOut;
     }
+    public UserAccount getCheckedBy() { return checkedBy; }
 
     public void setTitle(String title) {
         this.title = title;
@@ -20,9 +22,13 @@ public class LibraryItem {
     public void setCheckedOut(boolean checkedOut) {
         this.checkedOut = checkedOut;
     }
+    public void setUser(UserAccount user) {
+        this.checkedBy = user;
+    }
 
-    public boolean checkoutItem() {
+    public boolean checkoutItem(UserAccount currentUser) {
         if (this.isAvailable()) {
+            setUser(currentUser);
             setCheckedOut(true);
             return true;
         }
@@ -33,6 +39,7 @@ public class LibraryItem {
         if (this.isAvailable()) {
             return false;
         }
+        setUser(null);
         setCheckedOut(false);
         return true;
     }

@@ -14,6 +14,7 @@ public class BookTest {
     private Book unavailableBook;
     private Book availableBook;
     ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+    private UserAccount user;
 
     @Before
     public void setUp() {
@@ -35,13 +36,13 @@ public class BookTest {
 
     @Test
     public void successfulCheckout() {
-        availableBook.checkout();
+        availableBook.checkout(user);
         assertEquals("Thank you! Enjoy the book\n", outContent.toString());
     }
 
     @Test
     public void unsuccessfulCheckout() {
-        unavailableBook.checkout();
+        unavailableBook.checkout(user);
         assertEquals("That book is not available.\n", outContent.toString());
     }
 

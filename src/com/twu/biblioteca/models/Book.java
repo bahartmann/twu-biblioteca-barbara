@@ -25,8 +25,8 @@ public class Book extends LibraryItem {
         setCheckedOut(checkedOut);
     }
 
-    public void checkout() {
-        String checkoutStatus = checkoutItem() ? "Thank you! Enjoy the book"
+    public void checkout(UserAccount currentUser) {
+        String checkoutStatus = checkoutItem(currentUser) ? "Thank you! Enjoy the book"
                 : "That book is not available.";
         System.out.println(checkoutStatus);
     }

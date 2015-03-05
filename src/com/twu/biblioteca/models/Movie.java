@@ -36,8 +36,8 @@ public class Movie extends LibraryItem {
         setCheckedOut(false);
     }
 
-    public void checkout() {
-        String checkoutStatus = checkoutItem() ? "Thank you! Enjoy the movie"
+    public void checkout(UserAccount currentUser) {
+        String checkoutStatus = checkoutItem(currentUser) ? "Thank you! Enjoy the movie"
                 : "That movie is not available.";
         System.out.println(checkoutStatus);
     }

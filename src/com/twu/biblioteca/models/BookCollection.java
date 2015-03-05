@@ -1,6 +1,6 @@
 package com.twu.biblioteca.models;
 
-import com.twu.biblioteca.Resizer;
+import com.twu.biblioteca.lib.Resizer;
 
 import java.util.*;
 

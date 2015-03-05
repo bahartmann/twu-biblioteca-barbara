@@ -1,5 +1,6 @@
 package com.twu.biblioteca.commands;
 
+import com.twu.biblioteca.Authenticator;
 import com.twu.biblioteca.lib.Command;
 import com.twu.biblioteca.models.Book;
 import com.twu.biblioteca.models.BookCollection;
@@ -15,6 +16,10 @@ public class ReturnBookCommand implements Command {
     }
 
     public void run() {
+        if (Authenticator.getInstance().getCurrentLoggedUser() == null){
+            System.out.println("You have to login to return a book!");
+            return;
+        }
         BookCollection bookCollection = BookCollection.getInstance();
 
         System.out.println("What book would you like return?");

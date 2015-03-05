@@ -14,6 +14,7 @@ public class MovieTest {
     private Movie unavailableMovie;
     private Movie availableMovie;
     ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+    private UserAccount user;
 
     @Before
     public void setUp() {
@@ -36,13 +37,13 @@ public class MovieTest {
 
     @Test
     public void successfulCheckout() {
-        availableMovie.checkout();
+        availableMovie.checkout(user);
         assertEquals("Thank you! Enjoy the movie\n", outContent.toString());
     }
 
     @Test
     public void unsuccessfulCheckout() {
-        unavailableMovie.checkout();
+        unavailableMovie.checkout(user);
         assertEquals("That movie is not available.\n", outContent.toString());
     }
 
