@@ -7,9 +7,8 @@ import com.twu.biblioteca.lib.Command;
  */
 public class ListBooksCommand implements Command {
     public String describe() {
-        return "Show a list of all library books";
+        return "Show a list of available library books";
     }
-
 
     public void run() {
         BookCollection bookCollection = BookCollection.getInstance();

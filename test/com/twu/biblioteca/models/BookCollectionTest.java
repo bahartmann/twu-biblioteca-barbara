@@ -42,9 +42,9 @@ public class BookCollectionTest {
     @Test
     public void shouldPrintAllAvailableBooks() {
         collectionOne.printBooksTable();
-        String collectionTable = "|                  TITLE                  |                  AUTHOR                 | YEAR |\n" +
-                                 "| The Great Gatsby                        | F. Scott Fitzgerald                     | 1925 |\n" +
-                                 "| Head First Java                         | Bert Bates and Kathy Sierra             | 2004 |\n";
+        String collectionTable = "| TITLE                                   | AUTHOR                                  | YEAR | \n" +
+                                 "| The Great Gatsby                        | F. Scott Fitzgerald                     | 1925 | \n" +
+                                 "| Head First Java                         | Bert Bates and Kathy Sierra             | 2004 | \n";
         assertEquals(collectionTable, outContent.toString());
     }
 
@@ -58,6 +58,6 @@ public class BookCollectionTest {
     @Test
     public void searchValidBook() {
         Book book = collectionOne.searchBook("The Great Gatsby");
-            assertEquals(exampleBook.getAuthor(), book.getAuthor());
+        assertEquals(exampleBook.getAuthor(), book.getAuthor());
     }
 }

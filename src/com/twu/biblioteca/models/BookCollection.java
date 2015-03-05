@@ -1,8 +1,8 @@
 package com.twu.biblioteca.models;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import com.twu.biblioteca.Resizer;
+
+import java.util.*;
 
 public class BookCollection {
 
@@ -23,17 +23,19 @@ public class BookCollection {
     }
 
     public void printBooksTable() {
+        Resizer resizer = new Resizer();
+
         System.out.println("| " +
-                stringWithExtraCharacters("                 TITLE", 40) + "| " +
-                stringWithExtraCharacters("                 AUTHOR", 40) + "| " +
-                stringWithExtraCharacters("YEAR", 5) + "|");
+                resizer.addCharacters("TITLE", 40) +
+                resizer.addCharacters("AUTHOR", 40) +
+                resizer.addCharacters("YEAR", 5));
 
         for (Book book : this.collection) {
             if (book.isAvailable()){
                 System.out.println("| " +
-                        stringWithExtraCharacters(book.getTitle(), 40) + "| " +
-                        stringWithExtraCharacters(book.getAuthor(), 40) + "| " +
-                        stringWithExtraCharacters(String.valueOf(book.getYear()), 5)+ "|");
+                        resizer.addCharacters(book.getTitle(), 40) +
+                        resizer.addCharacters(book.getAuthor(), 40) +
+                        resizer.addCharacters(String.valueOf(book.getYear()), 5));
             }
         }
     }
@@ -45,9 +47,5 @@ public class BookCollection {
         }
         System.out.println("Book not found.");
         return null;
-    }
-
-    private static String stringWithExtraCharacters(String string, int length) {
-        return String.format("%1$-"+length+ "s", string);
     }
 }
