@@ -18,6 +18,7 @@ public class BibliotecaApp {
 
         app.defineMenuOption("Login", new LoginCommand());
         app.defineMenuOption("Logout", new LoginCommand());
+        app.defineMenuOption("My info", new UserInfoCommand());
 
         app.defineMenuOption("List Books", new ListBooksCommand());
         app.defineMenuOption("Check-out Book", new CheckoutBookCommand());
